@@ -1,0 +1,63 @@
+<h1>Comentários</h1>
+
+<div ng-show="message" class="alert alert-{{message.type}}" role="alert">
+  {{message.text}}
+</div>
+
+<form name="formComentario">
+  <div class="row">
+      <div class="col-md-12 form-group {{formComentario.tituloComentario.$dirty && formComentario.tituloComentario.$invalid ? 'has-error' : ''}}">
+        <label class="control-label" for="tituloComentario">Título: </label>
+        <input id="tituloComentario" name="tituloComentario" ng-model="coment.title"
+          type="text" class="form-control" placeholder="Informe o título do comentário" required />
+        <span class="help-block"
+          ng-show="formComentario.tituloComentario.$dirty && formComentario.tituloComentario.$error.required">
+          É necessário informar o título do comentário.
+        </span>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12 form-group {{formComentario.textoComentario.$dirty && formComentario.textoComentario.$invalid ? 'has-error' : ''}}">
+        <label class="control-label" for="textoComentario">Texto: </label>
+        <textarea id="textoComentario" name="textoComentario" ng-model="coment.text"
+          class="form-control" placeholder="Informe o texto do comentário" required>
+        </textarea>
+        <span class="help-block"
+          ng-show="formComentario.textoComentario.$dirty && formComentario.textoComentario.$error.required">
+          É necessário informar o texto do comentário.
+        </span>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12 form-group {{formComentario.tipoComentario.$dirty && formComentario.tipoComentario.$invalid ? 'has-error' : ''}}">
+        <label class="control-label" for="tipoComentario">Tipo do Comentário: </label>
+        <select id="tipoComentario" name="tipoComentario" ng-model="coment.type" class="form-control" required
+          ng-options="option.description for option in listComentsTypes track by option.id"></select>
+        <span class="help-block"
+          ng-show="formComentario.tipoComentario.$dirty && formComentario.tipoComentario.$error.required">
+          É necessário informar o tipo do comentário.
+        </span>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12 form-group button-group text-center">
+        <button id="enviarComentario" class="btn btn-primary" ng-click="addNewComent()">
+          Adicionar
+        </button>
+        <button id="removerComentarios" class="btn btn-danger" ng-click="removeComents()">
+          Remover Comentários
+        </button>
+      </div>
+  </div>
+</form>
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group" ng-show="listComents">
+      <li class="list-group-item" ng-repeat="comentView in listComents | orderBy : '-date'" style="background-color: {{$odd ? '#DFDFDF' : '#FFF'}}">
+        <h4>{{$index + 1}}. {{comentView.title}} <span class="small" ng-show="comentView.type"><strong>({{comentView.type.description}})</strong></span></h4>
+        <p>{{comentView.text}}</p>
+        <span class="small"><strong>{{comentView.date | date : 'dd/MM/yyyy - HH:mm:ss'}}</strong></span>
+      </li>
+    </ul>
+  </div>
+</div>

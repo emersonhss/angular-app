@@ -1,0 +1,16 @@
+<p>Exemplo da página do <a href="https://angularjs.org/">AngularJS</a> sessão <strong>Create Components</strong>.</p>
+
+<tabs>
+  <pane title="Localization">
+    <span>Date: {{ '2012-04-01' | date:'fullDate' }}</span><br>
+    <span>Currency: {{ 123456 | currency }}</span><br>
+    <span>Number: {{ 98765.4321 | number }}</span><br>
+  </pane>
+  <pane title="Pluralization">
+    <div ng-controller="BeerCounter">
+      <div ng-repeat="beerCount in beers">
+        <ng-pluralize count="beerCount" when="beerForms"></ng-pluralize>
+      </div>
+    </div>
+  </pane>
+</tabs>

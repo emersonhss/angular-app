@@ -1,0 +1,29 @@
+<h1>Tabuada</h1>
+
+<form name="formTabuada">
+  <div class="row">
+      <div class="col-md-3 form-group {{formTabuada.numeroTabuada.$dirty && (formTabuada.numeroTabuada.$error.required || formTabuada.numeroTabuada.$error.min || formTabuada.numeroTabuada.$error.max) ? 'has-error' : ''}}">
+        <label class="control-label" for="numeroTabuada">Número: </label>
+        <input id="numeroTabuada" name="numeroTabuada" ng-model="numero"
+          type="number" min="1" max="10" class="form-control" required />
+        <span class="help-block"
+          ng-show="formTabuada.numeroTabuada.$dirty && formTabuada.numeroTabuada.$error.required">
+          É necessário informar um número para calcular a tabuada.
+        </span>
+        <span class="help-block"
+          ng-show="formTabuada.numeroTabuada.$dirty && (formTabuada.numeroTabuada.$error.min || formTabuada.numeroTabuada.$error.max)">
+          Deve ser informado um número de 1 a 10.
+        </span>
+      </div>
+  </div>
+</form>
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group" ng-show="numero">
+      <li class="list-group-item" ng-repeat="multiplicador in [1,2,3,4,5,6,7,8,9,10]" style="background-color: {{$odd ? '#DFDFDF' : '#FFF'}}">
+        <span class="badge">{{numero * multiplicador}}</span>
+        {{$index + 1}}) {{numero}} * {{multiplicador}} =
+      </li>
+    </ul>
+  </div>
+</div>
