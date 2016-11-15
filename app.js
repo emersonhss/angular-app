@@ -14,7 +14,6 @@ angular.module('app', ['components','ngRoute'])
         templateUrl : "tabs.html"
     })
     .when("/coments", {
-        controller : "Coments as coments",
         templateUrl : "coments.html"
     });
 })
